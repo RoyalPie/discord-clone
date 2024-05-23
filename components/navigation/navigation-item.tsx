@@ -43,8 +43,8 @@ export const NavigationItem = ({
                     params?.serverId === id && "bg-primary/10 text-primary rounded-[16px]"
                 )}>
                     <Image 
-                        width={500}
-                        height={300}
+                        width={50}
+                        height={30}
                         src={imageUrl}
                         alt="Channel"
                     />
