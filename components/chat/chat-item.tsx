@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Member, MemberRole, Profile } from "@prisma/client";
 import { UserAvatar } from "../user-avatar";
 import { ActionTooltip } from "../action-tooltip";
-import { Edit, FileIcon, ShieldAlert, ShieldCheck, Trash } from "lucide-react";
+import { Download, Edit, FileIcon, ShieldAlert, ShieldCheck, Trash } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
@@ -164,13 +164,19 @@ export const ChatItem = ({
                     <div className="relative flex items-center p-2 mt-2 rounded-md bg-background/10">
                         <FileIcon className="h-10 w-10 fill-indigo-200 stroke-indigo-400"/>
                         <a 
-                            href={fileUrl}
+                            href={`https://docs.google.com/viewer?url=${fileUrl}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="ml-2 text-sm text-indigo-500 dark:text-indigo-400 hover:underline"
                         >
                             {content}
                         </a>
+                        <ActionTooltip label="Download">
+                            <Download 
+                                onClick={() => window.open(fileUrl, '_blank')}
+                                className="cursor-pointer ml-auto w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition"
+                            />
+                        </ActionTooltip>
                     </div>
                 )}
                 {!fileUrl && !isEditing && (
