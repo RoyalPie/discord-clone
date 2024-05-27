@@ -15,7 +15,13 @@ export const FileUpload = ({
     endpoint
 }: FileUploadProps) => {
     const fileType = value?.split(".").pop();
-    const isPDF = (fileType === "pdf" || fileType === "doc" || fileType === "docx");
+    const isPDF = (
+        fileType === "pdf" || fileType === "doc" || fileType === "docx" ||
+        fileType === "ppt" || fileType === "pptx" || fileType === "pptm" ||
+        fileType === "pps" || fileType === "ppsx" || fileType === "ppsm" ||
+        fileType === "xls" || fileType === "xlsx" || fileType === "xlsm" ||
+        fileType === "xlt" || fileType === "xltx" || fileType === "xltm"
+      );
     const isImage = (fileType === "jpeg" || fileType === "jpg" || fileType === "png" );
     const isVideo = fileType === "mp4";
 

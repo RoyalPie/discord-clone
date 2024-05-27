@@ -27,12 +27,21 @@ export const ourFileRouter = {
  
   // Takes up to 4 2mb images and/or 1 256mb video
   messageFile: f({
-    image: { maxFileSize: "2MB", maxFileCount: 4 },
-    video: { maxFileSize: "256MB", maxFileCount: 1 },
-    pdf: { maxFileSize: "2MB", maxFileCount: 4 },
-    "application/msword": { maxFileSize: "2MB", maxFileCount: 4 },
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document": { maxFileSize: "2MB", maxFileCount: 4 },
-    "application/vnd.ms-word.document.macroenabled.12": { maxFileSize: "2MB", maxFileCount: 4 },
+    image: { maxFileSize: "2MB", maxFileCount: 1 },
+    video: { maxFileSize: "16MB", maxFileCount: 1 },
+    "application/pdf": { maxFileSize: "32MB", maxFileCount: 1 },
+    "application/msword": { maxFileSize: "32MB", maxFileCount: 1 },
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document": { maxFileSize: "32MB", maxFileCount: 1 },
+    "application/vnd.ms-powerpoint": { maxFileSize: "32MB", maxFileCount: 1 },
+    "application/vnd.openxmlformats-officedocument.presentationml.presentation": { maxFileSize: "32MB", maxFileCount: 1 },
+    "application/vnd.ms-powerpoint.presentation.macroenabled.12": { maxFileSize: "32MB", maxFileCount: 1 },
+    "application/vnd.openxmlformats-officedocument.presentationml.slideshow": { maxFileSize: "32MB", maxFileCount: 1 },
+    "application/vnd.ms-powerpoint.slideshow.macroenabled.12": { maxFileSize: "32MB", maxFileCount: 1 },
+    "application/vnd.ms-excel": { maxFileSize: "32MB", maxFileCount: 1 },
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": { maxFileSize: "32MB", maxFileCount: 1 },
+    "application/vnd.ms-excel.sheet.macroenabled.12": { maxFileSize: "32MB", maxFileCount: 1 },
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.template": { maxFileSize: "32MB", maxFileCount: 1 },
+    "application/vnd.ms-excel.template.macroenabled.12": { maxFileSize: "32MB", maxFileCount: 1 }
   })
     .middleware(() => handleAuth())
     .onUploadComplete(() => {}),

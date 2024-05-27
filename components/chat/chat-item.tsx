@@ -122,7 +122,13 @@ export const ChatItem = ({
     const isOwner = currentMember.id === member.id;
     const canDeleteMessage = !deleted && (isAdmin || isModerator || isOwner);
     const canEditMessage = !deleted && isOwner && !fileUrl;
-    const isPDF = (fileType === "pdf" || fileType === "doc" || fileType === "docx") && fileUrl;
+    const isPDF = (
+        fileType === "pdf" || fileType === "doc" || fileType === "docx" ||
+        fileType === "ppt" || fileType === "pptx" || fileType === "pptm" ||
+        fileType === "pps" || fileType === "ppsx" || fileType === "ppsm" ||
+        fileType === "xls" || fileType === "xlsx" || fileType === "xlsm" ||
+        fileType === "xlt" || fileType === "xltx" || fileType === "xltm"
+      ) && fileUrl;
     const isImage = (fileType === "jpeg" || fileType === "jpg" || fileType === "png" ) && fileUrl;
     const isVideo = fileType === "mp4" && fileUrl;
 
