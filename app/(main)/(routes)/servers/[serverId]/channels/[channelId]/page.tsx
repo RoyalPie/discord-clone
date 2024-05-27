@@ -1,7 +1,7 @@
 import { ChatHeader } from "@/components/chat/chat-header";
 import { ChatInput } from "@/components/chat/chat-input";
 import { ChatMessages } from "@/components/chat/chat-messages";
-import { MediaRoom } from "@/components/media-room";
+import { AudioRoom, MediaRoom } from "@/components/media-room";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
@@ -76,17 +76,17 @@ const ChannelIdPage = async ({
             </>
         )}
         {channel.type === ChannelType.AUDIO && (
-            <MediaRoom 
+            <AudioRoom 
                 chatId={channel.id}
                 video={false}
-                audio={true}
+                audio={false}
             />
         )}
         {channel.type === ChannelType.VIDEO && (
             <MediaRoom 
                 chatId={channel.id}
-                video={true}
-                audio={true}
+                video={false}
+                audio={false}
             />
         )}
     </div>

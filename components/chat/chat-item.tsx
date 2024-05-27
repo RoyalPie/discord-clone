@@ -122,8 +122,9 @@ export const ChatItem = ({
     const isOwner = currentMember.id === member.id;
     const canDeleteMessage = !deleted && (isAdmin || isModerator || isOwner);
     const canEditMessage = !deleted && isOwner && !fileUrl;
-    const isPDF = fileType === "pdf" && fileUrl;
-    const isImage = !isPDF && fileUrl;
+    const isPDF = (fileType === "pdf" || fileType === "doc" || fileType === "docx") && fileUrl;
+    const isImage = (fileType === "jpeg" || fileType === "jpg" || fileType === "png" ) && fileUrl;
+    const isVideo = fileType === "mp4" && fileUrl;
 
   return (
     <div className="relative group flex items-center hover:bg-black/5 p-4 transition w-full">
@@ -145,7 +146,7 @@ export const ChatItem = ({
                         {timestamp}
                     </span>
                 </div>
-                {isImage && (
+                {isImage && !isVideo && (
                     <a 
                         href={fileUrl}
                         target="_blank"
@@ -171,12 +172,31 @@ export const ChatItem = ({
                         >
                             {content}
                         </a>
-                        <ActionTooltip label="Download">
-                            <Download 
-                                onClick={() => window.open(fileUrl, '_blank')}
-                                className="cursor-pointer ml-auto w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition"
-                            />
-                        </ActionTooltip>
+                        <div className="hidden group-hover:flex items-center p-1 ml-auto bg-white dark:bg-zinc-800 border rounded-sm">
+                            <ActionTooltip label="Download">
+                                <Download 
+                                    onClick={() => window.open(fileUrl, '_blank')}
+                                    className="cursor-pointer ml-auto w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition"
+                                />
+                            </ActionTooltip>
+                        </div>
+                    </div>
+                )}
+                {isVideo && (
+                    <div className="relative flex items-center p-2 mt-2 rounded-md bg-background/10">
+                        <video width="250" controls>
+                            <source src={fileUrl} type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                        <div className="hidden group-hover:flex items-center ml-auto p-1 bg-white dark:bg-zinc-800 border rounded-sm">
+                            <ActionTooltip label="Download">
+                                <Download 
+                                    onClick={() => window.open(fileUrl, '_blank')}
+                                    className="cursor-pointer ml-auto w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition"
+                                />
+                            </ActionTooltip>
+                        </div>
+                        
                     </div>
                 )}
                 {!fileUrl && !isEditing && (
